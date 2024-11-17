@@ -36,7 +36,6 @@ export default {
       const data = JSON.parse(JSON.stringify(arr));
       this.lastPage = data.last_page;
 
-      // Отримуємо останній ID із існуючого this.pagination
       const lastId = this.pagination.length
         ? this.pagination[this.pagination.length - 1].id
         : 0;
@@ -49,7 +48,6 @@ export default {
       }));
 
       this.pagination = [...this.pagination, ...processedData];
-
       console.log(JSON.parse(JSON.stringify(this.pagination)));
     },
     async loadData(page) {
