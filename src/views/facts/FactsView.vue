@@ -45,6 +45,7 @@ export default {
         id: lastId + index + 1,
         fact: item.fact,
         length: item.length,
+        img: `@/src/assets/img/cats/${index + 1}.wepb`,
       }));
 
       this.pagination = [...this.pagination, ...processedData];
