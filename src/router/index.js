@@ -12,11 +12,12 @@ const routes = [
   // Auth routes
   {
     path: "/auth",
+    component: () => import("../layouts/AuthLayout.vue"),
+    meta: { layout: "layout-auth" },
     children: [
       {
         path: "login",
         name: "auth-login",
-        meta: { layout: "layout-auth" },
         component: () => import("../views/auth/LoginView.vue"),
       },
     ],
@@ -24,8 +25,8 @@ const routes = [
   // App routes
   {
     path: "/app",
-    // meta: { layout: "layout-default" },
-    component: () => import("../views/facts/FactsView.vue"),
+    component: () => import("../layouts/DefaultLayout.vue"),
+    meta: { layout: "layout-default" },
     children: [
       {
         path: "facts",

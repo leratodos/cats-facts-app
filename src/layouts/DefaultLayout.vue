@@ -1,7 +1,11 @@
 <template>
   <div>
     <HeaderComponent />
-    <slot />
+    <main>
+      <div class="container">
+        <router-view />
+      </div>
+    </main>
     <FooterComponent />
   </div>
 </template>

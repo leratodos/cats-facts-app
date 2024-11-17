@@ -1,0 +1,20 @@
+.login-view {
+  .login-form-title {
+    font-weight: 700;
+    line-height: 34px;
+    text-align: center;
+  }
+  .login-form-wrapper {
+    max-width: 410px;
+    margin: 115px auto 0;
+
+    label {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    button {
+      margin: 48px auto 0;
+      display: block;
+    }
+  }
+}

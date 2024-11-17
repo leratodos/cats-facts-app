@@ -1,16 +1,15 @@
 <template>
   <div>
     <HeaderComponent />
-    <LoginView />
+    <router-view />
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/partials/HeaderComponent.vue";
-import LoginView from "@/views/auth/LoginView.vue";
 
 export default {
   name: "AuthLayout",
-  components: { LoginView, HeaderComponent },
+  components: { HeaderComponent },
 };
 </script>

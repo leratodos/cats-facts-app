@@ -4,7 +4,9 @@ import router from "./router";
 import store from "./store";
 import DefaultLayout from "./layouts/DefaultLayout.vue";
 import AuthLayout from "./layouts/AuthLayout.vue";
-import "./assets/scss/main.scss";
+import "./assets/main.scss";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 
 Vue.config.productionTip = false;
 Vue.component("LayoutDefault", DefaultLayout);
