@@ -1,0 +1,33 @@
+.fact-card {
+  height: 459px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    background-color: $primaryColor;
+  }
+  .item-img {
+    height: 254px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+  }
+  .item-fact-wrapper {
+    height: 100%;
+    max-height: 149px;
+  }
+  .item-fact {
+    padding: 0 16px;
+    overflow: hidden; /* Приховує текст, що виходить за межі контейнера */
+    display: -webkit-box; /* Створює флекс-контейнер */
+    -webkit-line-clamp: 6; /* Вказує кількість видимих рядків */
+    -webkit-box-orient: vertical; /* Встановлює вертикальну орієнтацію */
+    text-overflow: ellipsis; /* Додає три крапки */
+  }
+  .short-fact {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+}

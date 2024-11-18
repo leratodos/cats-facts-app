@@ -2,7 +2,7 @@
   <div>
     <HeaderComponent />
     <main>
-      <div class="container">
+      <div class="container page-container">
         <router-view />
       </div>
     </main>

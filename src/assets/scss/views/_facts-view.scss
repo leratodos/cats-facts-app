@@ -1,0 +1,14 @@
+.facts-view {
+  .input-search-wrapper {
+    i {
+      font-size: 24px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 16px;
+    }
+    input {
+      padding-left: 49px!important;
+    }
+  }
+}
