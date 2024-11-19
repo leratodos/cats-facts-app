@@ -7,17 +7,17 @@
           <router-view />
         </div>
       </main>
-      <FooterComponent />
+      <!--      <FooterComponent />-->
     </div>
   </div>
 </template>
 
 <script>
 import HeaderComponent from "@/components/partials/HeaderComponent.vue";
-import FooterComponent from "@/components/partials/FooterComponent.vue";
+// import FooterComponent from "@/components/partials/FooterComponent.vue";
 
 export default {
   name: "DefaultLayout",
-  components: { FooterComponent, HeaderComponent },
+  components: { HeaderComponent },
 };
 </script>
