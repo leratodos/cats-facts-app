@@ -1,7 +1,7 @@
 <template>
-  <div class="fact-card d-block" @click="read(item)">
+  <div v-if="item" class="fact-card d-block" @click="read(item)">
     <div class="row g-0 card-item">
-      <img class="item-img mb-5" :src="item.img" alt="" />
+      <img class="item-img mb-5" :src="item.img" alt="Cat" />
       <div class="item-fact-wrapper">
         <p
           class="item-fact"
@@ -22,10 +22,8 @@ export default {
     },
   },
   methods: {
-    read(item) {
-      setTimeout(() => {
-        this.$router.push(`/app/fact/${item.id}`);
-      }, 300);
+    async read(item) {
+      await this.$router.push(`/app/fact/${item.id}`);
     },
   },
 };

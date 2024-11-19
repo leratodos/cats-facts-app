@@ -4,7 +4,7 @@
       <div class="d-flex align-items-center justify-content-between">
         <div class="logo">
           <a href="/app/facts">
-            <img src="@/assets/img/logo.svg" alt="" />
+            <img src="@/assets/img/logo.svg" alt="Logo" />
           </a>
         </div>
         <div class="user dropdown">

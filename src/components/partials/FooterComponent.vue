@@ -4,7 +4,7 @@
       <div class="mb-5">
         <div class="col-md-6 logo d-flex">
           <a href="/app/facts">
-            <img src="@/assets/img/logo-footer.svg" alt="" />
+            <img src="@/assets/img/logo-footer.svg" alt="Logo" />
           </a>
         </div>
       </div>
