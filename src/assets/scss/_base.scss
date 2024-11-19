@@ -90,8 +90,8 @@ main {
 .vs__dropdown-menu li {
   padding: 12px 16px!important;
 }
-.vs__dropdown-menu li:hover {
-  background-color: $hoverColor!important;
+.vs__dropdown-menu li:hover, .dropdown-item:hover {
+  background-color: $primaryColor!important;
 }
 .vs__open-indicator {
   fill: $mainText !important;
@@ -104,8 +104,7 @@ input.error {
   outline: 1px solid #FF4646!important;
 }
 .invalid-message {
-  color: red;
-
+  color: #FF4646;
 }
 
 
