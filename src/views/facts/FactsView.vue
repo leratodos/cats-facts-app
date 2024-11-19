@@ -27,12 +27,13 @@
       </div>
     </div>
     <div v-if="loading" class="mb-5 text-center">Loading...</div>
-    <div
-      v-if="filteredFacts.length > 0"
-      class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3 g-4 mb-3"
-    >
-      <div v-for="el in filteredFacts" :key="el.id" class="col">
-        <FactCard :item="el" />
+    <div v-if="filteredFacts.length > 0">
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3 g-4 mb-3"
+      >
+        <div v-for="el in filteredFacts" :key="el.id" class="col">
+          <FactCard :item="el" />
+        </div>
       </div>
       <div class="d-flex justify-content-center">
         <button class="btn btn-clear" v-if="lastPage > page" @click="loadMore">
