@@ -4,12 +4,10 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  // Root route
   {
     path: "/",
     redirect: "/auth/login",
   },
-  // Auth routes
   {
     path: "/auth",
     component: () => import("../layouts/AuthLayout.vue"),
@@ -22,7 +20,6 @@ const routes = [
       },
     ],
   },
-  // App routes
   {
     path: "/app",
     component: () => import("../layouts/DefaultLayout.vue"),
@@ -34,7 +31,7 @@ const routes = [
         component: () => import("../views/facts/FactsView.vue"),
       },
       {
-        path: "facts/:id",
+        path: "fact/:id",
         name: "app-read-fact",
         component: () => import("../views/facts/ReadFactView.vue"),
       },
@@ -48,4 +45,14 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = !!localStorage.getItem("userName");
+  if (to.path.startsWith("/app") && !isAuthenticated) {
+    return next({ name: "auth-login" });
+  }
+  if (to.path.startsWith("/auth") && isAuthenticated) {
+    return next({ name: "app-facts" });
+  }
+  next();
+});
 export default router;

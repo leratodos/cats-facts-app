@@ -1,5 +1,5 @@
 <template>
-  <a class="fact-card d-block">
+  <div class="fact-card d-block" @click="read(item)">
     <div class="row g-0 card-item">
       <img class="item-img mb-5" :src="item.img" alt="" />
       <div class="item-fact-wrapper">
@@ -11,7 +11,7 @@
         </p>
       </div>
     </div>
-  </a>
+  </div>
 </template>
 <script>
 export default {
@@ -19,6 +19,13 @@ export default {
     item: {
       type: Object,
       default: null,
+    },
+  },
+  methods: {
+    read(item) {
+      setTimeout(() => {
+        this.$router.push(`/app/fact/${item.id}`);
+      }, 300);
     },
   },
 };

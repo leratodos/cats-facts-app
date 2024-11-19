@@ -1,12 +1,14 @@
 <template>
   <div>
-    <HeaderComponent />
-    <main>
-      <div class="container page-container">
-        <router-view />
-      </div>
-    </main>
-    <FooterComponent />
+    <div class="content-wrapper">
+      <HeaderComponent />
+      <main>
+        <div class="container page-container">
+          <router-view />
+        </div>
+      </main>
+      <FooterComponent />
+    </div>
   </div>
 </template>
 

@@ -2,10 +2,12 @@
   <div class="login-view">
     <div class="login-form-wrapper">
       <h4 class="login-form-title">Log in</h4>
-      <form class="login-form" @submit.prevent="loginMethod">
-        <div class="mb-3">
+      <form class="login-form" @submit.prevent="login">
+        <div class="input-wrapper position-relative">
           <label for="name" class="form-label mb-0">Name</label>
           <input
+            v-model="user"
+            :class="{ error: hasError }"
             id="name"
             type="text"
             class="form-input form-control"
@@ -14,8 +16,11 @@
             autocomplete="name"
             autofocus
             required
+            @focus="hasError = false"
           />
-          <div class="invalid-feedback"></div>
+          <div v-if="hasError" class="invalid-message position-absolute">
+            Enter your name
+          </div>
         </div>
         <button class="btn btn-primary">Log in</button>
       </form>
@@ -27,40 +32,35 @@ import WindowTitle from "@/mixins/window-title";
 
 export default {
   mixins: [WindowTitle],
+  data() {
+    return {
+      user: "",
+      hasError: false,
+    };
+  },
   computed: {
     windowTitle() {
       return "Authorization";
     },
   },
   methods: {
-    async loginMethod() {
-      console.log("login");
-      // this.loading = true;
-      // ErrorHandler.clearErrors(document.getElementById("formAuthentication"));
-      // const email = this.$refs.email.value;
-      // const password = this.$refs.password.value;
-      //
-      // try {
-      //   await this.login({ email, password });
-      // } catch (e) {
-      //   this.loading = false;
-      //   if (e instanceof ErrorHandler) {
-      //     e.showError();
-      //   } else {
-      //     throw e;
-      //   }
-      // }
-      //
-      // if (this.isAuthenticated) {
-      //   if (window.localStorage && window.localStorage.initialRoute && window.localStorage.initialRoute.substring(0, 4) === "/app") {
-      //     await this.$router.push(window.localStorage.initialRoute);
-      //     window.localStorage.removeItem("initialRoute")
-      //   } else {
-      //     await this.$router.push("/app/start-page");
-      //   }
-      // } else {
-      //   this.loading = false;
-      // }
+    validUserCheck(name) {
+      if (
+        !name.trim() ||
+        name.length < 3 ||
+        name.length > 15 ||
+        /[^a-zA-Z]/.test(name)
+      ) {
+        this.hasError = true;
+        return false;
+      }
+      return true;
+    },
+    async login() {
+      if (this.validUserCheck(this.user)) {
+        await this.$store.dispatch("saveUserName", this.user);
+        await this.$router.push("/app/facts");
+      }
     },
   },
 };

@@ -1,0 +1,20 @@
+footer {
+  flex: 0 0 auto; /* Фіксує висоту футера */
+  background-color: $footerBg;
+  padding: 32px 0;
+  text-align: center;
+  * {
+    color: #fff !important;
+    fill: #fff !important;
+  }
+  svg {
+    fill: #fff
+  }
+  .footer-border {
+    border-top: 1px solid #fff;
+    padding-top: 32px;
+    p, a {
+      color: rgba(255, 255, 255, 0.8)!important;
+    }
+  }
+}

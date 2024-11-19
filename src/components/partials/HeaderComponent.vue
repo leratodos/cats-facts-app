@@ -3,29 +3,29 @@
     <div class="container">
       <div class="d-flex align-items-center justify-content-between">
         <div class="logo">
-          <a href="#">
+          <a href="/app/facts">
             <img src="@/assets/img/logo.svg" alt="" />
           </a>
         </div>
         <div class="user dropdown">
           <a
-            class="dropdown-toggle no-arrow"
+            class="dropdown-toggle no-arrow text-decoration-none"
             href="javascript:void(0);"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <div class="avatar"></div>
+            <div
+              v-if="userName"
+              class="user-block d-flex align-items-center justify-content-center"
+            >
+              <span class="letter">
+                {{ getFirstLetter(userName) }}
+              </span>
+            </div>
           </a>
           <ul class="dropdown-menu">
             <li>
-              <router-link to="/app/profile" class="dropdown-item">
-                <i class="bx bx-cog me-2"></i>
-                <span class="align-middle">Profile</span>
-              </router-link>
-            </li>
-            <li>
-              <a class="dropdown-item" @click="onLogout">
-                <i class="bx bx-power-off me-2"></i>
+              <a class="dropdown-item" @click="logout">
                 <span class="align-middle">Logout</span>
               </a>
             </li>
@@ -37,18 +37,29 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "HeaderComponent",
   data() {
-    return {};
+    return {
+      user: "",
+    };
+  },
+  computed: {
+    ...mapGetters(["userName"]),
   },
   methods: {
-    async onLogout() {
-      console.log("log out");
-      // this.loading = true;
-      // await this.logout();
-      // await this.waitMs(1000);
-      // this.$router.push("/auth/login");
+    waitMs(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    },
+    getFirstLetter(str) {
+      return str.charAt();
+    },
+    async logout() {
+      await this.$store.dispatch("clearUser");
+      await this.waitMs(100);
+      await this.$router.push("/auth/login");
     },
   },
 };

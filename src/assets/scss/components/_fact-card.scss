@@ -1,8 +1,8 @@
 .fact-card {
-  height: 459px;
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
+  height: 459px;
 
   &:hover {
     background-color: $primaryColor;
@@ -19,11 +19,11 @@
   }
   .item-fact {
     padding: 0 16px;
-    overflow: hidden; /* Приховує текст, що виходить за межі контейнера */
-    display: -webkit-box; /* Створює флекс-контейнер */
-    -webkit-line-clamp: 6; /* Вказує кількість видимих рядків */
-    -webkit-box-orient: vertical; /* Встановлює вертикальну орієнтацію */
-    text-overflow: ellipsis; /* Додає три крапки */
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
   }
   .short-fact {
     font-size: 24px;

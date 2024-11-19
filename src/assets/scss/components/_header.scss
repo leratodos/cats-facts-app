@@ -1,11 +1,16 @@
 header {
   background-color: $primaryColor;
   padding: 20px 0;
-  .avatar {
+  .user-block {
     border-radius: 50%;
     width: 56px;
     height: 56px;
     background-color: $secondaryColor;
+    .letter {
+      color: #fff;
+      font-size: 31px;
+      font-weight: 500;
+    }
   }
   .dropdown-toggle::after {
     display: none;

@@ -6,6 +6,7 @@
         <div class="input-search-wrapper position-relative">
           <i class="bx bx-search"></i>
           <input
+            v-model="search"
             placeholder="Search facts here"
             class="form-control input-search"
             type="text"
@@ -22,25 +23,24 @@
             :reduce="(el) => el.id"
             label="name"
           />
-          {{ selectedOption }}
         </div>
       </div>
     </div>
-    <div v-if="pagination.length > 0">
-      <div
-        class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3 g-4 mb-3"
-      >
-        <div v-for="el in filteredFacts" :key="el.id" class="col">
-          {{ el }}
-          <FactCard :item="el" />
-        </div>
+    <div v-if="loading" class="mb-5 text-center">Loading...</div>
+    <div
+      v-if="filteredFacts.length > 0"
+      class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-xl-3 g-4 mb-3"
+    >
+      <div v-for="el in filteredFacts" :key="el.id" class="col">
+        <FactCard :item="el" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-clear" v-if="lastPage > page" @click="loadMore">
+          Load more facts
+        </button>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
-      <button class="btn btn-clear" v-if="lastPage > page" @click="loadMore">
-        Load more facts
-      </button>
-    </div>
+    <div class="mb-5" v-else-if="!loading">No cats and no facts :(</div>
   </div>
 </template>
 <script>
@@ -66,6 +66,8 @@ export default {
         { id: 5, name: "Long ones only" },
       ],
       selectedFilter: 1,
+      search: "",
+      loading: false,
     };
   },
   computed: {
@@ -73,16 +75,34 @@ export default {
       return "Facts";
     },
     filteredFacts() {
+      let facts = [...this.pagination];
       switch (this.selectedOption) {
+        case 2:
+          facts = facts.sort((a, b) => b.length - a.length);
+          break;
+        case 3:
+          facts = facts.sort((a, b) => a.length - b.length);
+          break;
         case 4:
-          return this.pagination.filter((item) => item.length < 100);
+          facts = facts.filter((item) => item.length < 100);
+          break;
         case 5:
-          return this.pagination.filter((item) => item.length >= 100);
+          facts = facts.filter((item) => item.length >= 100);
+          break;
         default:
-          return this.pagination;
+          break;
       }
+
+      if (this.search.trim()) {
+        const lowerSearch = this.search.toLowerCase();
+        facts = facts.filter((item) =>
+          item.fact.toLowerCase().includes(lowerSearch)
+        );
+      }
+      return facts;
     },
   },
+
   mounted() {
     this.loadData(this.page);
   },
@@ -107,12 +127,12 @@ export default {
       }));
 
       this.pagination = [...this.pagination, ...processedData];
-      console.log(JSON.parse(JSON.stringify(this.pagination)));
     },
     async loadData(page) {
       if (!page) {
         page = 1;
       }
+      this.loading = true;
       const filters = {
         page: page,
       };
@@ -121,6 +141,8 @@ export default {
         this.processData(resp);
       } catch (e) {
         console.error(e);
+      } finally {
+        this.loading = false;
       }
     },
   },
